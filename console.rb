@@ -14,12 +14,22 @@ bounty1 = Bounty.new( {
     'homeworld'=> 'Naboo'
     })
 
-  # bounty2.save
+# Bounty.delete_all
+
+# bounty1.save
+#   bounty2.save
+#
+# name_to_find = 'Darth Sidious'
+name_to_find = 'Darth Vader'
+# p Bounty.find_by_name( name_to_find )
+# id_to_find = 15
+id_to_find = 1
+
+p Bounty.find_by_id(id_to_find)
   # bounty2.delete
 
-  bounty1.save
 
-  bounty1.name = 'Rotta the Hutt'
-  bounty1.update
+  # bounty1.name = 'Rotta the Hutt'
+  # bounty1.update
 
 # Bounty.delete_all

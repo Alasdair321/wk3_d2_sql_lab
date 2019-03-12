@@ -56,4 +56,27 @@ def Bounty.delete_all
   db.close
 end
 
+def Bounty.find_by_name( name_to_find )
+  db = PG.connect({dbname: 'bounties', host: 'localhost'})
+  sql = "SELECT * FROM bounty_table WHERE name = $1;"
+  values = [name_to_find]
+  db.prepare('find_row_by_name_sql', sql)
+  array_of_hashes = db.exec_prepared('find_row_by_name_sql', values )
+  db.close
+  return nil if array_of_hashes.count == 0
+  return array_of_hashes.map { |hash| Bounty.new( hash )  }
+end
+
+
+def Bounty.find_by_id( id_to_find )
+  db = PG.connect({dbname: 'bounties', host: 'localhost'})
+  sql = "SELECT * FROM bounty_table WHERE id = $1;"
+  values = [id_to_find]
+  db.prepare('find_row_by_id_sql', sql)
+  array_of_hashes = db.exec_prepared('find_row_by_id_sql', values )
+  db.close
+  return nil if array_of_hashes.count == 0
+  return array_of_hashes.map { |hash| Bounty.new( hash )  }
+end
+
 end # end class
